@@ -1,0 +1,14 @@
+This is a basic tool to convert SF.net bugs to a JIRA repository.
+
+For now, there only is a basic SF.net export reader. It works around some
+encoding quirks (seriously - creating htmlentities from utf-8 you are
+interpreting as windows-1252. wtf.).
+
+The initial plan is to use SOAP to push the bugs to the JIRA install. Maybe
+another method will be used later on, depending on what works best.
+
+
+
+This entire project is MIT-licensed. Feel free to use it for whatever you like,
+but bugfixes & patches are, of course, very welcome. Then again, there are no
+bugs in my code! ;-)
