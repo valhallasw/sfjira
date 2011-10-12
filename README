@@ -4,10 +4,13 @@ For now, there only is a basic SF.net export reader. It works around some
 encoding quirks (seriously - creating htmlentities from utf-8 you are
 interpreting as windows-1252. wtf.).
 
-The initial plan is to use SOAP to push the bugs to the JIRA install. Maybe
+The initial plan is to use CSV to get the bugs to the JIRA install. Maybe
 another method will be used later on, depending on what works best.
 
 
+The first stage of conversion is determining the bug tracker ids (to create backlinks to the original bugs) and to determine the max number of comments/attachments (to create the right number of columns). This is done by calling
+
+prepare.py <export.xml> <config.py>
 
 This entire project is MIT-licensed. Feel free to use it for whatever you like,
 but bugfixes & patches are, of course, very welcome. Then again, there are no
