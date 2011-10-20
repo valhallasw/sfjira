@@ -14,12 +14,10 @@ if len(sys.argv) == 4:
     base_config = __import__(sys.argv[3].split('.py')[0])
     base_project_id = base_config.project_id
     base_tracker_ids = base_config.tracker_ids
-    base_date_format = base_config.date_format
     print "Successfully imported %s" % sys.argv[3]
 else:
     base_project_id = None
     base_tracker_ids = {}
-    base_date_format = "%d %B %Y %H:%M:%S"
 
 issues = parser.get_issues(sys.argv[1])
 outfile = sys.argv[2]
@@ -60,8 +58,6 @@ print >> f, "tracker_ids = {}"
 for artifact_key in get_values['artifact_type']:
     print >> f, "tracker_ids[%r] = %r # <%s tracker id>" % (artifact_key, base_tracker_ids.get(artifact_key, None), artifact_key)
 
-print >> f, ""
-print >> f, "date_format = %r" % base_date_format
 print >> f, ""
 print >> f, "# END OF CONFIGURATION"
 print >> f, ""
