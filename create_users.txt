@@ -1,0 +1,8 @@
+{
+  "date.import.format" : "yyyyMMddHHmmss",
+  "project.name" : "user import project",
+  "field.submitter" : "reporter",
+  "project.key" : "UUUU",
+  "field.summary" : "summary",
+  "user.email.suffix" : "@users.sourceforge.net.arctus.nl"
+}

@@ -12,6 +12,10 @@ The first stage of conversion is determining the bug tracker ids (to create back
 
 prepare.py <export.xml> <config.py>
 
+The second stage creates dummy issues to create usernames in JIRA. This project can then be deleted. An example import configuration is part of the project (this can be used in the JIRA import screen).
+
+create_user.py <config.py> <create_user.csv>
+
 This entire project is MIT-licensed. Feel free to use it for whatever you like,
 but bugfixes & patches are, of course, very welcome. Then again, there are no
 bugs in my code! ;-)

@@ -28,6 +28,8 @@ get_values = dict([(i, set()) for i in get_values])
 max_comments = 0
 max_attachments = 0
 
+usernames = set()
+
 print "Parsing issues...", 
 n=0
 for issue in issues:
@@ -37,9 +39,14 @@ for issue in issues:
         counts[key] = counts.setdefault(key, 0) + 1
     max_comments = max(max_comments, len(issue.artifact_messages))
     max_attachments = max(max_attachments, len(issue.attachments))
+
+    usernames.update([issue.assigned_to, issue.submitted_by] + \
+                     [m.user_name for m in issue.artifact_messages] + \
+                     [h.mod_by    for h in issue.artifact_history])
     n=n+1
     if n%100 == 0:
         print n,
+        sys.stdout.flush()
 
 print "DONE"
 
@@ -64,6 +71,7 @@ print >> f, ""
 print >> f, "max_comments = %r" % max_comments
 print >> f, "max_attachments = %r" % max_attachments
 print >> f, "get_values = %r" % get_values
+print >> f, "usernames = %r" % usernames
 print >> f, "counts = %r" % counts
 print >> f, "source = %r" % sys.argv[1]
 

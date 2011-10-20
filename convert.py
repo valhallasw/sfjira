@@ -7,12 +7,13 @@ jiradateformat = "%Y%m%d%H%M%S" # javaspeak: yyyyMMddHHmmss
 if len(sys.argv) != 3 or sys.argv[2] == '--help':
     print "%s <config.py> <output.csv>"
     print ""
-    print "Conversion stage 2 -- csv output"
+    print "Conversion stage 3 -- main csv output"
+    sys.exit()
 
 config = __import__(sys.argv[1].split(".py")[0])
 writer = ucsv.UnicodeWriter(sys.argv[2])
 
-print "sf.net -> JIRA conversion, pass 2...",
+print "sf.net -> JIRA conversion, pass 3...",
 
 direct = [u'status', u'submitted_by', u'artifact_group_id', u'summary', u'priority', u'details', u'assigned_to', u'artifact_type', u'category', u'resolution']
 
