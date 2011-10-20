@@ -1,6 +1,9 @@
 # Unicode CSV reader
 # Lifted from http://docs.python.org/library/csv.html#writer-objects
 # See http://docs.python.org/copyright.html for license information
+import csv
+import cStringIO
+import codecs
 
 class UnicodeWriter:
     """
@@ -12,16 +15,13 @@ class UnicodeWriter:
         # Redirect output to a queue
         self.queue = cStringIO.StringIO()
         self.writer = csv.writer(self.queue, dialect=dialect, **kwds)
-        self.stream = f
-        self.encoder = codecs.getincrementalencoder(encoding)()
+        self.stream = codecs.open(f, 'w', encoding)
 
     def writerow(self, row):
-        self.writer.writerow([s.encode("utf-8") for s in row])
+        self.writer.writerow([s.encode("utf-8") if isinstance(s, basestring) else s for s in row])
         # Fetch UTF-8 output from the queue ...
         data = self.queue.getvalue()
         data = data.decode("utf-8")
-        # ... and reencode it into the target encoding
-        data = self.encoder.encode(data)
         # write to the target stream
         self.stream.write(data)
         # empty queue
